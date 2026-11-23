@@ -1,0 +1,3 @@
+CREATE UNIQUE INDEX "uq_empresa_ruc" ON "empresa" USING btree ("ruc");--> statement-breakpoint
+CREATE UNIQUE INDEX "uq_factura_importacion_ruc" ON "factura" USING btree ("empresa_id","serie","numero","proveedor_ruc") WHERE "factura"."serie" is not null and "factura"."numero" is not null and "factura"."proveedor_ruc" is not null;--> statement-breakpoint
+CREATE UNIQUE INDEX "uq_factura_importacion_nombre" ON "factura" USING btree ("empresa_id","serie","numero",coalesce("proveedor_nombre", '')) WHERE "factura"."serie" is not null and "factura"."numero" is not null and "factura"."proveedor_ruc" is null;

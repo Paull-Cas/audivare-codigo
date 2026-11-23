@@ -1,0 +1,1 @@
+ALTER TYPE "public"."tipo_notificacion" ADD VALUE 'LIMITE_USUARIOS_REDUCIDO';

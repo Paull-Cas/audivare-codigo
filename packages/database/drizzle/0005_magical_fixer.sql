@@ -1,0 +1,1 @@
+ALTER TABLE "empresa" ALTER COLUMN "limite_usuarios" SET DEFAULT 2;

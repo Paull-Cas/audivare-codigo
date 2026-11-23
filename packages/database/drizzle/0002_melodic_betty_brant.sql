@@ -1,0 +1,1 @@
+ALTER TABLE "empresa" ADD COLUMN "limite_usuarios" integer DEFAULT 5 NOT NULL;

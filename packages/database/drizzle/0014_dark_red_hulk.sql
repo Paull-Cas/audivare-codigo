@@ -1,0 +1,1 @@
+ALTER TABLE "pago_suscripcion" ADD COLUMN "duracion_meses" integer DEFAULT 1 NOT NULL;

@@ -1,0 +1,177 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Paleta base (no cambiar los nombres: se usan en todo el monorepo) */
+  --color-primary: #2563EB;
+  --color-accent: #16A34A;
+  --color-bg: #FFFFFF;
+  --color-text: #1F2937;
+  --color-border: #F3F4F6;
+
+  /* Tokens de estilo futurista/elegante */
+  --color-primary-2: #4F46E5;   /* índigo */
+  --color-primary-3: #7C3AED;   /* violeta */
+  --color-accent-2: #0D9488;    /* teal */
+
+  --gradient-primary: linear-gradient(135deg, #2563EB 0%, #4F46E5 100%);
+  --gradient-primary-vivid: linear-gradient(135deg, #2563EB 0%, #4F46E5 55%, #7C3AED 100%);
+  --gradient-accent: linear-gradient(135deg, #16A34A 0%, #0D9488 100%);
+
+  --glow-primary: 0 12px 32px -10px rgba(37, 99, 235, 0.5);
+  --glow-accent: 0 12px 32px -10px rgba(16, 163, 74, 0.45);
+
+  --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.04), 0 6px 20px -8px rgba(37, 99, 235, 0.10);
+  --shadow-card-hover: 0 2px 4px rgba(16, 24, 40, 0.05), 0 16px 40px -12px rgba(37, 99, 235, 0.22);
+
+  --surface-glass: rgba(255, 255, 255, 0.72);
+  --surface-glass-strong: rgba(255, 255, 255, 0.82);
+
+  /* Chrome oscura (sidebar + barra superior) con acento neón */
+  --neon-cyan: #22D3EE;
+  --neon-blue: #3B82F6;
+  --chrome-bg:
+    radial-gradient(620px 220px at 50% -12%, rgba(34, 211, 238, 0.14), transparent 60%),
+    radial-gradient(480px 300px at 0% 120%, rgba(59, 130, 246, 0.16), transparent 55%),
+    linear-gradient(180deg, #0B1224 0%, #101A38 58%, #0D1530 100%);
+  --nav-active-neon-bg: linear-gradient(135deg, rgba(34, 211, 238, 0.22), rgba(59, 130, 246, 0.30));
+  --nav-active-neon-glow: inset 0 0 0 1px rgba(34, 211, 238, 0.35), 0 8px 24px -8px rgba(34, 211, 238, 0.5);
+
+  /* Fondo de aplicación: base clara con halos de color muy sutiles */
+  --app-bg:
+    radial-gradient(1100px 560px at 100% -12%, rgba(79, 70, 229, 0.07), transparent 60%),
+    radial-gradient(950px 520px at -10% 112%, rgba(37, 99, 235, 0.06), transparent 55%),
+    linear-gradient(180deg, #F7F9FE 0%, #EFF3FB 100%);
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Fondo de la app */
+  .app-surface {
+    background: var(--app-bg);
+    background-attachment: fixed;
+  }
+
+  /* Superficies translúcidas tipo vidrio */
+  .glass {
+    background: var(--surface-glass);
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+  }
+  .glass-strong {
+    background: var(--surface-glass-strong);
+    backdrop-filter: blur(16px) saturate(170%);
+    -webkit-backdrop-filter: blur(16px) saturate(170%);
+  }
+
+  /* Texto con degradado (títulos/branding) */
+  .gradient-text {
+    background: var(--gradient-primary-vivid);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* Botón primario con degradado y glow */
+  .btn-primary {
+    background-image: var(--gradient-primary);
+    color: #fff;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.08), 0 8px 20px -10px rgba(37, 99, 235, 0.55);
+    transition: box-shadow 0.25s ease, transform 0.15s ease, filter 0.2s ease;
+  }
+  .btn-primary:hover {
+    box-shadow: var(--glow-primary);
+    filter: brightness(1.05);
+  }
+  .btn-primary:active {
+    transform: translateY(1px);
+  }
+  .btn-primary:disabled {
+    opacity: 0.55;
+    box-shadow: none;
+    filter: none;
+  }
+
+  /* Botón de acento (verde/teal) */
+  .btn-accent {
+    background-image: var(--gradient-accent);
+    color: #fff;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.08), 0 8px 20px -10px rgba(16, 163, 74, 0.5);
+    transition: box-shadow 0.25s ease, transform 0.15s ease, filter 0.2s ease;
+  }
+  .btn-accent:hover {
+    box-shadow: var(--glow-accent);
+    filter: brightness(1.05);
+  }
+  .btn-accent:active {
+    transform: translateY(1px);
+  }
+  .btn-accent:disabled {
+    opacity: 0.55;
+    box-shadow: none;
+    filter: none;
+  }
+
+  /* Tarjeta elevada con sombra suave y elevación al hover */
+  .card-elevated {
+    box-shadow: var(--shadow-card);
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+  }
+  .card-elevated:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+  }
+
+  /* Ítem de navegación activo (sobre fondo claro): degradado tenue + glow */
+  .nav-active {
+    background-image: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(79, 70, 229, 0.14));
+    color: var(--color-primary);
+    box-shadow: inset 0 0 0 1px rgba(37, 99, 235, 0.15), 0 6px 16px -10px rgba(37, 99, 235, 0.5);
+  }
+
+  /* Chrome oscura para sidebar y barra superior */
+  .chrome-dark {
+    background: var(--chrome-bg);
+    color: #E2E8F0;
+  }
+
+  /* Ítem de navegación activo sobre chrome oscura: neón cian/azul con glow */
+  .nav-active-neon {
+    background-image: var(--nav-active-neon-bg);
+    color: #FFFFFF;
+    box-shadow: var(--nav-active-neon-glow);
+  }
+}
+
+/* Barra de desplazamiento moderna y discreta */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(37, 99, 235, 0.35) transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(37, 99, 235, 0.35), rgba(79, 70, 229, 0.35));
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(37, 99, 235, 0.55), rgba(79, 70, 229, 0.55));
+  background-clip: padding-box;
+}

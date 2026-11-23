@@ -1,0 +1,32 @@
+{
+  "name": "web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/check-port.mjs && next dev",
+    "build": "pnpm --filter @audivare/database build && next build",
+    "test:sessions": "pnpm --filter @audivare/database exec tsx --tsconfig ../../apps/web/tsconfig.json --test ../../apps/web/test/session.test.ts",
+    "test:historial": "pnpm --filter @audivare/database exec tsx --tsconfig ../../apps/web/test/tsconfig.json --test ../../apps/web/test/historial-detalle.test.tsx",
+    "test:factura-entrada": "pnpm --filter @audivare/database exec tsx --tsconfig ../../apps/web/test/tsconfig.json --test ../../apps/web/test/factura-entrada.test.ts",
+    "test:routes": "pnpm --filter @audivare/database exec tsx --tsconfig ../../apps/web/tsconfig.json --test ../../apps/web/test/routes.integration.test.ts",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@audivare/database": "workspace:*",
+    "jose": "6.2.12",
+    "next": "15.5.27",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.43",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "15.5.27",
+    "postcss": "^8.5.29",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.9.3"
+  }
+}

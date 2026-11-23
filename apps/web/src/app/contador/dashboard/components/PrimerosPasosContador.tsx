@@ -1,0 +1,3 @@
+export default function PrimerosPasosContador({ tieneEmpresas = false }: { tieneEmpresas?: boolean }) {
+  return <details open={!tieneEmpresas} className="rounded-2xl border bg-white p-5"><summary className="cursor-pointer font-semibold">Primeros pasos</summary><ol className="mt-4 list-decimal space-y-3 pl-5"><li>Acepta la invitación de la empresa.</li><li>Abre su espacio y selecciona el año y el mes de los documentos.</li><li>Carga facturas o sustentos con una referencia, revisa los documentos y elige las categorías que necesitas descargar en un PDF.</li></ol><p className="mt-4 text-sm text-slate-600">La empresa y su contador vinculado pueden cargar y editar facturas y sustentos independientes. El periodo lo indica quien sube el archivo.</p></details>;
+}
